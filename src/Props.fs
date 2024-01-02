@@ -227,6 +227,8 @@ type redirectToSignUp =
   static member inline redirectUrl (value: string) = Interop.mkAttr "redirectUrl" (value)
 
 
+
+
 [<Erase>]
 type signIn =
   /// The full URL or path to navigate after a successful sign in.
@@ -265,7 +267,7 @@ type signInButton =
 
 module signInButton =
 
-  /// Determines what happens when a user clicks on the <SignInButton />. Setting this to redirect will redirect the user to the sign-in route. Setting this to modal will open a modal on the current route. Defaults to redirect`
+  /// Determines what happens when a user clicks on the <SignInButton>. Setting this to redirect will redirect the user to the sign-in route. Setting this to modal will open a modal on the current route. Defaults to redirect`
   [<Erase>]
   type mode =
     static member inline redirect = Interop.mkAttr "mode" "redirect"
@@ -286,7 +288,7 @@ type signInInitialValues =
 
 [<Erase>]
 type signOutButton =
-  /// children you want to wrap the <SignOutButton /> in.
+  /// children you want to wrap the <SignOutButton> in.
   static member inline children (value:ReactElement) = Interop.mkAttr "children?" (value)
   /// A promise to handle after the sign out has successfully happened.
   static member inline signOutCallback (value: (unit -> unit)) = Interop.mkAttr "signOutCallback?" (value)
@@ -338,7 +340,7 @@ type signUpButton =
 
 module signUpButton =
 
-  /// Determines what happens when a user clicks on the <SignUpButton />. Setting this to redirect will redirect the user to the sign-up route. Setting this to modal will open a modal on the current route. Defaults to redirect`
+  /// Determines what happens when a user clicks on the <SignUpButton>. Setting this to redirect will redirect the user to the sign-up route. Setting this to modal will open a modal on the current route. Defaults to redirect`
   [<Erase>]
   type mode =
     static member inline redirect = Interop.mkAttr "mode" "redirect"
