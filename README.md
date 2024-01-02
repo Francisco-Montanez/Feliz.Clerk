@@ -58,7 +58,7 @@ open Feliz.Clerk
 
 let clerkProvider (children: ReactElement seq) =
     Clerk.clerkProvider [
-        clerkProvider.publishableKey Clerk.CLERK_PUBLISHABLE_KEY
+        clerkProvider.publishableKey PublishableKey.CLERK_PUBLISHABLE_KEY
         prop.children children
     ]
 ```
@@ -75,7 +75,7 @@ open Feliz.Clerk
 
 let clerkProvider (children: ReactElement seq) =
     Clerk.clerkProvider [
-        clerkProvider.publishableKey Clerk.CLERK_PUBLISHABLE_KEY
+        clerkProvider.publishableKey PublishableKey.CLERK_PUBLISHABLE_KEY
         clerkProvider.localization.enUS
         clerkProvider.theme.dark
         prop.children children
