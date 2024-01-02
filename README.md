@@ -107,8 +107,6 @@ let private update (msg:Msg) (state:State) : State * Cmd<Msg> =
     match msg with
     | UrlChanged page -> { state with Page = page }, Cmd.none
 
-
-
 open FS.FluentUI
 open Feliz.Clerk
 
@@ -125,19 +123,12 @@ module AppView =
             Html.a("About", Page.About)
         ]
 
-    let clerkProvider (children: ReactElement seq) =
-        Clerk.clerkProvider [
-            clerkProvider.publishableKey Clerk.CLERK_PUBLISHABLE_KEY
-            prop.children children
-        ]
-
     let fluentProvider (children: ReactElement seq) =
         Fui.fluentProvider [
-            fluentProvider.theme.teamsLightTheme
+            fluentProvider.theme.teamsDarkTheme
             fluentProvider.children children
         ]
 
-open AppView
 
 [<ReactComponent>]
 let AppView () =
@@ -147,8 +138,8 @@ let AppView () =
         match state.Page with
         | Page.SignIn -> Clerk.signIn []
         | Page.SignUp -> Clerk.signUp []
-        | Page.Index -> Pages.Index.IndexView ()
-        | Page.About -> Html.text "learn more about us"
+        | Page.Index ->  Clerk.signedIn[]
+        | Page.About -> Clerk.signedOut []
 
     let reactRouter (children: ReactElement list) =
         React.router [
@@ -157,15 +148,31 @@ let AppView () =
             router.children children
         ]
 
-    fluentProvider [
-        clerkProvider [
-            reactRouter [
-                navigation
-                render
-            ]
+    AppView.fluentProvider [
+        reactRouter [
+            AppView.navigation
+            render
         ]
     ]
 
+
+```
+
+```fsharp
+module Client.App
+
+open Feliz
+open Browser.Dom
+open Feliz.Clerk
+
+ReactDOM
+    .createRoot(document.getElementById "safer-app")
+    .render(
+        Clerk.clerkProvider [
+            clerkProvider.publishableKey PublishableKey.CLERK_PUBLISHABLE_KEY
+            prop.children [ View.AppView() ]
+        ]
+    )
 ```
 
 ## Support
