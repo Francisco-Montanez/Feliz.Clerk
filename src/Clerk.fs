@@ -133,6 +133,14 @@ type Clerk =
   ///   - `organizationProfileUrl`
   static member inline organizationSwitcher props = createElement (import "OrganizationSwitcher " "@clerk/clerk-react") props
 
+  /// The <Protect> component is used for authorization. It only renders its children when the current user has the specified .css-u8jhe2{color:var(--secondaryBlue);}.css-u8jhe2 code{color:var(--tertiaryBlue);}permission or role in the organization.
+  /// To limit who is able to see the content that <Protect> renders, you can pass either the permission or role prop. The recommended approach is to use permission because this lets you modify roles without breaking your application. Permissions can be assigned to different roles with ease.
+  /// If you do not pass either prop, <Protect> behaves the same as <SignedIn> and will render its children if the user is signed in, regardless of their role or its permissions.
+  /// For more complex authorization logic, pass conditional logic to the condition prop.
+  /// The children of the following component will only be visible to users with roles that have the org:invoices:create permission.
+  /// While authorization by permission is recommended, for convenience, <Protect> allows a role prop to be passed. The children of the following component will only be visible to users with the org:billing role.
+  static member inline protect props = createElement (import "Protect" "@clerk/clerk-react") props
+
   /// The <RedirectToCreateOrganization /> component will navigate to the create organization flow which has been configured in your application instance. The behavior will be just like a server-side (3xx) redirect, and will override the current location in the history stack.
   static member inline redirectToCreateOrganization props = createElement (import "RedirectToCreateOrganization " "@clerk/clerk-react") props
 

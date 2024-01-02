@@ -199,6 +199,14 @@ module organizationSwitcher =
     static member inline navigation = Interop.mkAttr "organizationProfileMode" "navigation"
 
 
+[<Erase>]
+type protect =
+  /// Optional string corresponding to a Roles Permission in the format org:<resource>:<action>
+  static member inline permission (value: string) = Interop.mkAttr "permission?" (value)
+  /// Optional string corresponding to an Organizations Role in the format org:<role>
+  static member inline role (value: string) = Interop.mkAttr "role?" (value)
+
+
 
 
 
